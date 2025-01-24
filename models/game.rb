@@ -1,9 +1,8 @@
 # frozen_string_literal: true
+require_relative 'game_levels'
 
 # Game
 #
-require_relative 'constants/game_levels'
-
 class Game
   attr_reader :chances, :number_selected
 

@@ -56,7 +56,7 @@ class NumberGuessing
 
   def end_game
     puts "\nWould you like play again?\n 1.Yes\n2.No"
-    print "\nEnter you choice: "
+    print "\nEnter your option: "
     choice = gets.chomp.to_i
     if choice == 1
       start_game
