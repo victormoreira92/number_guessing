@@ -50,9 +50,12 @@ class NumberGuessing
       end
     end
     set_end_timer
+    puts "\n================================================="
     puts "\nGame Over !! You didn't discover the number\n" unless win
     puts "\nThis round during #{timer}"
     puts "\nThe correct number was #{@number_selected}"
+    puts "\n================================================="
+
   end
 
   def evaluate_guess
@@ -84,7 +87,7 @@ class NumberGuessing
         option = gets.chomp.to_i
         raise NumberWrong unless [1,2].include? option
         if option == 1
-          puts "\nThe secret number is between #{@number_selected - 20} and #{number_selected+20}\n"
+          puts "\nThe secret number is between #{@number_selected - 10} and #{number_selected + 10}\n"
         end
       rescue NumberWrong
         puts "\nPlease digit 1 for Yes or 2 for No\n"
@@ -97,11 +100,19 @@ class NumberGuessing
   def end_game
     puts "\nWould you like play again?\n1.Yes\n2.No"
     puts "\nEnter your option: "
-    choice = gets.chomp.to_i
-    if choice == 1
-      start_game
-    else
-      exit!
+    begin
+      option = gets.chomp.to_i
+      raise NumberWrong unless [1,2].include? option
+      if option == 1
+        puts "Let's play again!!"
+        start_game
+      else
+        puts "Thanks for playing!!"
+        exit!
+      end
+    rescue NumberWrong
+      puts "\nPlease digit 1 for Yes or 2 for No\n"
+      retry
     end
   end
 

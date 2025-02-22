@@ -1,20 +1,109 @@
-#### Number Guessing
 
-This game is from based on [Number Guessing](https://roadmap.sh/projects/number-guessing-game "Number Guessing").
+# Number Guessing Game
 
+## Description
+This is a simple **Command Line Interface (CLI) game** where the computer randomly selects a number between **1 and 100**, and the user has to guess it within a limited number of attempts. The game includes different difficulty levels, a hint system, and a timer to track the user's performance. The game will continue until the user either guesses the number correctly or runs out of attempts. Additionally, the user has the option to play multiple rounds.
 
-It is a CLI-based game, so you need to use the command line to interact with the game. The game work as follows:
+## Features
+- **Difficulty Levels**: Choose from easy, medium, or hard mode, each with a different number of allowed guesses.
+- **Hint System**: Get clues if you are stuck.
+- **Timer**: Track how long it takes to guess the number.
+- **Multiple Rounds**: Play as many times as you want until you decide to quit.
+- **Interactive Feedback**: The game provides feedback after each guess, indicating whether the correct number is higher or lower.
 
-* When the game starts, it should display a welcome message along with the rules of the game.
+## How to Play
+1. When the game starts, a **welcome message** and the **rules** will be displayed.
+2. The computer will randomly select a number between **1 and 100**.
+3. You will be prompted to **choose a difficulty level**:
+   - **Easy**: 10 chances
+   - **Medium**: 5 chances 
+   - **Hard**: 3 chances
+4. After each round, you can choose to **play again or quit**.
 
-* The computer should randomly select a number between 1 and 100.
+## Sample Output
+```
+Welcome to the Number Guessing Game!
+I'm thinking of a number between 1 and 100.
 
-* User should select the difficulty level (easy, medium, hard) which will determine the number of chances they get to guess the number.
+Please select the difficulty level:
+1. Easy (10 chances)
+2. Medium (5 chances)
+3. Hard (3 chances)
 
-* The user should be able to enter their guess.
+Enter you choice: 
+3
 
-* If the user’s guess is correct, the game should display a congratulatory message along with the number of attempts it took to guess the number.
+Great! You have selected the Hard difficulty level.
+=================================================
 
-* If the user’s guess is incorrect, the game should display a message indicating whether the number is greater or less than the user’s guess.
+Round 1°
 
-* The game should end when the user guesses the correct number or runs out of chances.
+Enter you guess: 
+2
+
+Incorrect! The number is greater than 2
+=================================================
+
+Round 2°
+
+Are you stuck? Would you like a clue?
+1.Yes
+2.No
+2
+
+Enter you guess: 
+2
+
+Incorrect! The number is greater than 2
+=================================================
+
+Round 3°
+
+Enter you guess: 
+2
+
+Incorrect! The number is greater than 2
+
+=================================================
+
+Game Over !! You didn't discover the number
+
+This round during 03 seconds
+
+The correct number was 32
+
+=================================================
+
+Would you like play again?
+1.Yes
+2.No
+
+Thanks for playing!!
+```
+
+## Requirements
+- A command-line interface (CLI) environment.
+- Python or another programming language that supports CLI input/output.
+
+## How to Run the Game
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/victormoreira92/number-guessing.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd number-guessing
+   ```
+3. Run the game:
+   ```sh
+   ruby number_guessing.rb
+   ```
+
+## Future Improvements
+- Add a **leaderboard** to track high scores.
+- Implement a **multiplayer mode** where players compete.
+- Allow the user to select a **custom range** of numbers.
+
+---
+Enjoy the game and test your number-guessing skills! 🎯
+
