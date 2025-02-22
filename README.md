@@ -2,7 +2,13 @@
 # Number Guessing Game
 
 ## Description
-This is a simple **Command Line Interface (CLI) game** where the computer randomly selects a number between **1 and 100**, and the user has to guess it within a limited number of attempts. The game includes different difficulty levels, a hint system, and a timer to track the user's performance. The game will continue until the user either guesses the number correctly or runs out of attempts. Additionally, the user has the option to play multiple rounds.
+This is a simple **Command Line Interface (CLI) game** inspired of https://roadmap.sh/projects/number-guessing-game.
+<br><br>
+In this application a number between **1 and 100** is randomly select, and the user has to guess it within a limited number of attempts. 
+<br><br>
+The game includes different difficulty levels, a hint system, and a timer to track the user's performance. 
+<br><br>
+The game will continue until the user either guesses the number correctly or runs out of attempts. Additionally, the user has the option to play multiple rounds.
 
 ## Features
 - **Difficulty Levels**: Choose from easy, medium, or hard mode, each with a different number of allowed guesses.
