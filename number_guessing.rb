@@ -1,7 +1,7 @@
 require_relative 'exceptions/number_wrong'
 
 class NumberGuessing
-  attr_reader :number_selected, :level_game
+  attr_reader :number_selected, :level_game, :start_time, :end_time
 
   LEVELS_OPTIONS = {
     EASY: 10,
@@ -13,7 +13,7 @@ class NumberGuessing
   def start_game
     @number_selected = [*1..100].sample
     @level_game = set_level
-    set_round
+    set_chances
     end_game
   end
 
@@ -32,20 +32,26 @@ class NumberGuessing
     LEVELS_OPTIONS.keys[choice - 1]
   end
 
-  def set_round
+  def set_chances
+    set_start_timer
+    win = false
     1.upto(LEVELS_OPTIONS[@level_game]) do |round|
       puts '================================================='
       puts "\nRound #{round}°"
+      get_clue(round)
       resp = evaluate_guess
       if resp[:compare].zero?
         puts "\nCongratulations! You guessed the correct number in #{round} attempts.\n"
         puts "\n================================================="
+        win = true
         break
       else
-        puts "\nIncorrect! The number is #{return_compare(resp[:compare])} than #{resp[:guess_number]}\n"
+        puts "\nIncorrect! The number is #{resp[:compare] >= 1 ? 'less' : 'greater'} than #{resp[:guess_number]}\n"
       end
     end
-
+    set_end_timer
+    puts "\nGame Over !! You didn't discover the number\n" unless win
+    puts "\nThis round during #{timer}"
     puts "\nThe correct number was #{@number_selected}"
   end
 
@@ -65,6 +71,28 @@ class NumberGuessing
     end
   end
 
+  def get_clue(round)
+    clue_round = {
+      HARD: 2,
+      EASY: 5,
+      MEDIUM: 3
+    }
+
+    if clue_round[level_game] == round
+      puts "\nAre you stuck? Would you like a clue?\n1.Yes\n2.No"
+      begin
+        option = gets.chomp.to_i
+        raise NumberWrong unless [1,2].include? option
+        if option == 1
+          puts "\nThe secret number is between #{@number_selected - 20} and #{number_selected+20}\n"
+        end
+      rescue NumberWrong
+        puts "\nPlease digit 1 for Yes or 2 for No\n"
+        retry
+      end
+    end
+  end
+
 
   def end_game
     puts "\nWould you like play again?\n1.Yes\n2.No"
@@ -78,10 +106,24 @@ class NumberGuessing
   end
 
   private
-  def return_compare(compare)
-    compare >= 1 ? 'less' : 'greater'
+  def set_start_timer
+    @start_time = Time.now
   end
 
+  def set_end_timer
+    @end_time = Time.now
+  end
+
+  def timer
+    minutes = (end_time - start_time) / 60
+    if minutes > 1
+      seconds = (end_time - start_time) % 60
+      "#{minutes.to_i.to_s.rjust(2,"0")} minutes #{seconds.to_i.to_s.rjust(2,"0")} seconds"
+    else
+      seconds = (end_time - start_time)
+      "#{seconds.to_i.to_s.rjust(2,"0")} seconds"
+    end
+  end
 end
 
 
